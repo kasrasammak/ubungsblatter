@@ -1,0 +1,185 @@
+%\documentclass[10pt,twoside,a4paper,twocolumn,landscape]{article}
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage[english]{babel}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+% change subsections to alphabetic
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\newtheorem{satz}{Satz}[section] % part
+\newtheorem{lemma}{Lemma}[section] % part
+
+\newcommand{\D}[2]{#1^\prime(#2)}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\scalar}[2]{\langle#1, #2\rangle}
+\newcommand{\starr}{\star\star}
+\newcommand{\starrr}{\star\star\star}
+\newcommand{\starrrr}{\star\star\star\star}
+\newcommand{\starrrrr}{\star\star\star\star\star}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\Bor}{Bor}
+\DeclareMathOperator{\BorRd}{Bor(\mathbb{R}^d)}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Kasra Sammak}
+\lhead{Analysis III - Übungsblatt 2}
+\rfoot{\thepage}
+
+\section{Aufgabe IV.10.12}
+Sei $\mathscr{R} = \{ A \subset \mathscr{R}: A$ oder $\mathbb{R}  \setminus A$ ist endlich\}; dies ist ein Ring. Ferner seien $\mu_1,  \mu_2: \mathscr{R} \rightarrow [0,\infty]$ durch:
+\begin{align*}
+&\mu_1(A) =  \left\{
+	\begin{array}{ll}
+     	0 & \text{falls A endlich} \\
+      	1 & \text{sonst} \\
+	\end{array} 
+	\right. \\
+&\mu_2(A) =   \left\{
+	\begin{array}{ll}
+      	0 & \text{falls A endlich} \\
+      	\infty & \text{ sonst} \\
+	\end{array} 
+	\right. 	
+\end{align*}
+definiert. 
+\subsection{$\mu_1$ und $\mu_2$ sind Prämaße auf $\mathscr{R}$}
+$\mu_1$ ist Prämaß:\\
+In $\mathscr{R}$ gilt: 
+$A$ endlich $\iff \mathbb{R} \setminus{A}$ überabzählbar. \\\\
+$ \forall A_1, A_2,... \subset \mathscr{R}$ paarweise disjunkt gilt: \\\\
+Es muss genau eine unendliche Teilmenge $A_n \subset \bigcup_{n=1}^{N}A_n,N \in \mathbb{N}$ existiern. \\\\ 
+Zu paarweise verschiedene $A_n$ muss es mindestens eine solche Folge entstehen, weil es keine paarweise disjunkte unendliche Folge von endlichen $A_n$ geben kann, die selbst nicht unendlich ist.\\\\
+(*)Aber es kann auch keine $A = \bigcup_{n=1}^{\infty} A_n$ von endlichen $A_n$ geben, die  unendlich ist, weil $\bigcap_{n=1}^{\infty} A_n^\complement$ endlich mit $A_n^\complement$ überabzählbar heißt $\exists \varepsilon \textgreater 0$ sodass $\varepsilon \textless d(A_n^\complement, A_j^\complement) \subset A_n$ aber $ A_n$ endlich. Somit folgt die Widerspruch (diesletztes gilt auch für beliebigen $A_n)$\\
+
+Nach dem einer entsteht, kann keine  unendliche paarweise verschiedene Element $A_n \subset \mathscr{R}$ noch entstehen, da $\mathbb{R} \setminus A_n $ endlich ist.\\\\
+ Somit folgt die Behauptung: $\mu_1( \bigcup_{n=1}^{\infty}A_n)  =  \sum_{n=1}^{N}\mu_1(A_n) = 1 + \sum_{n=1}^{\infty} 0; N \textless \infty $\\\\
+$\mu_2$ ist Prämaß:\\
+Genau dasselbe gilt für $\mu_2$ wie für $\mu_1$, aber mit $\infty$ statt 1.
+\subsection{Bestimme die zugehörigen äußeren Maße $\mu_1^{*}$ und $\mu_2^{*}$ sowie die $\mu_1^{*}$- bzw. $\mu_2^{*}$-
+messbaren Mengen.}
+Nach dem Theorem IV.3.5: 
+\begin{align*}
+	&\mu_1^{*}(A)= \mu_1(A) \text{ bzw } \mu_2^{*}(A) = \mu_2(A)\ \forall A \subset \mathscr{R}\\
+	\mu_1:&\mu_1(\bigcup_{n=1}^{\infty}A_n) \in \{0,1\} \Rightarrow\mu_1(\bigcup_{n=1}^{\infty}A_n) \leq \sum_{n=1}^{\infty}\mu_1(A_n) \leq \infty \\
+	\text{ wenn }&\mu_1(\bigcup_{n=1}^{\infty}A_n) = 1 \Rightarrow 1 \leq \sum_{n=1}^{\infty}\mu_1(A_n)\text{ bzgl:}(*)\\
+	\mu_2:&   \mu_2(\bigcup_{n=1}^{\infty}A_j) \ \leq \sum_{j=1}^{\infty}\mu_2(A_j) \leq\infty \\
+	\text{ wenn }&\mu_2(\bigcup_{n=1}^{\infty}A_n) = 0 \Rightarrow \sum_{n=1}^{\infty}\mu_2(A_n) = 0 \text{ sonst ist es } \infty
+\end{align*}
+\begin{align*}
+	&\forall \ Q \subset \mathbb{R} : A \subset \mathbb{R} \text { ist } \mu_1^{*} \text{-messbar}\iff \mu_1^{*}(Q) = \mu_1^{*}(Q \cap A) + \mu_1^{*}(Q \cap A^\complement)\\
+	&\text{ Sei } (Q \cap A) = \emptyset \Rightarrow (Q \cap A^\complement ) = Q \text{ Ohne Einschränkung} \Rightarrow \mu_1^{*}(Q) = \mu_1^{*}(Q) + 0\\ \
+	&\text{ Sei } A \text{ endlich } \Rightarrow  (Q \cap A) \text{ endlich Ohne Einschränkung} \Rightarrow \\ 
+	&\mu_1^{*}(Q) = 0 +  \mu_1^{*}(Q \cap A^\complement) \Rightarrow 0 \text{ wenn Q endlich, } 1 \text{ wenn nicht}
+	\\&\text{ Das Analog gilt für } \mu_2^{*} \text{ mit } \infty \text{ anstatt } 1 \\
+	\Rightarrow & A \subset \mathbb{R}:  \mu_1^{*}\text{- und }  \mu_2^{*} \text{-messbar}
+\end{align*}
+\subsection{Diskutiere die Eindeutigkeit der Fortsetzung von $\mu_i$ zu Maßen auf $\sigma(\mathscr{R})$ bzw. 
+$\mathscr{M}_{\mu_1^{*}}$} 
+Nach dem Theorem IV.3.5 gibt es eine  eindeutige Fortsetzung $\overline{\mu}_1$ bzw $\overline{\mu}_2$ auf einem auf $\mathscr{R} $ erzeugten $\sigma-Algebra$. Da $\forall A \subset \mathbb{R}$  $A$ $\mu_1^{*} $- und $\mu_2^{*} $-messbar ist, können wir die $\mu_1^{*}$ bzw $\mu_2^{*}$ Prämaßen auf $\sigma(\mathscr{R})$ einschränken und sogar $\mu_1 $ und $\mu_2 $ als eindeutige Maßen auf $\mathscr{M}_{\mu_1^{*}}$ bzw $\mathscr{M}_{\mu_2^{*}}$ fortsetzen.\\\\
+Da unsere Menge $\mathscr{R} \subset \mathscr{P}(S)$ der Ring der endlichen Teilmenge von $S$ ist mit der trivialen Inhalt $\mu$ = 0, gibt es die eindeutige Fortsetzungen von $\mu_1$ und $\mu_2$.
+\begin{align*}
+&\mu_1(A) =  \left\{
+	\begin{array}{ll}
+     	0 & \text{falls A abzählbar} \\
+      	1 & \text{falls A überabzählbar} \\
+	\end{array} 
+	\right. \\
+&\mu_2(A) =   \left\{
+	\begin{array}{ll}
+      	0 & \text{falls A abzählbar} \\
+      	\infty & \text{falls A überabzählbar} \\
+	\end{array} 
+	\right. 	
+\end{align*}
+In unserem Fall entsteht die Eindeutigkeit der Maßen auf der Tatsache, dass die Maßen endliche Maße sind. Da wenn wir nehmen zwei Maßen $\mu$ und $\nu$ auf einer Erzeuger von unser $\sigma$-algebra $\mathscr{E}$ nehmen, dann stimmen sie über $\mathscr{E} \cup \{S \}$ überein. \\\\Aber verallgemeine wenn Seien zwei $\sigma$ endliche Maßen auf einem $\cap$-Stabilen Erzeuger von einer $\sigma$-Algebra, dann stimmen sie überein.
+
+
+\section{Aufgabe 2}
+Sei $f: \mathbb{R}^d \rightarrow \mathbb{R}$ eine Funktion, und sei $S$ die Menge ihrer Stetigkeitspunkte. Die Oszillationsfunktion zu f ist durch:
+\begin{align*}
+	\omega_f(x) = \inf_{\varepsilon \textgreater 0}\sup\{|f(y_1) - f(y_2)|: \lVert y_i -x \lVert\textless \varepsilon\}
+\end{align*}
+erklärt.
+\subsection{Beschreibe $S$ mit Hilfe von $\omega_f$}
+\begin{align*}
+	&S = \{x: \omega_f(x) = 0 \} \\
+	&f stetig \Rightarrow \forall \epsilon \textgreater 0  \ \exists \varepsilon \textgreater 0:\\
+	 &\lVert y_i -x \lVert \textless \varepsilon \Rightarrow  |f(y_1) - f(y_2) | \textless \epsilon 
+\end{align*}
+$\omega_f$ ist als die größte unteren Schränke nach $\varepsilon$ von der kleinsten obere Schränke von $|f(y_1) - f(y_2)|$ definiert. Es nimmt ein $x$ an und gibt das Infimum der beliebigen $\varepsilon $ offene Teilmenge an der Stelle $x \in \mathbb{R}^d$ von allen Supremums der Wertbereich $\mathbb{R}$ zu diesem $x$ aus. \\
+$f$ ist genau dann stetig in $x$, wenn $\forall \epsilon \textgreater 0$ eine solche $\varepsilon$ existiert sodass$ \lVert y_i -x \lVert\textless \varepsilon$  \\$\Rightarrow0 \leq |f(y_1) - f(y_2) | \textless \epsilon$\\
+$\Rightarrow$ 0 ist die größte untere Schränke der Supremums wenn $f$ stetig an der Stelle $x$ ist.
+
+%$f$ ist stetig $\Rightarrow  $
+\subsection{$\{x: \omega_f(x) \textless r\}$ ist für alle $r \in \mathbb{R}$ offen}
+\begin{align*}
+	&\{x \in \mathbb{R}^d: \omega_f(x) \textless r\} \\
+	= &\{x \in \mathbb{R}^d: \inf_{\varepsilon \textgreater 0}\sup\{|f(y_1) - f(y_2)|: \lVert y_i -x \lVert\textless \varepsilon\} \textless r\}\\
+	\supset &\{x \in \mathbb{R}^d: \lVert y_i -x \lVert \textless \varepsilon \}\\
+	\Rightarrow & \forall r \textgreater 0: \inf_{\varepsilon \textgreater 0}\sup\{|f(y_1) - f(y_2)|: \lVert y_i -x \lVert\textless \varepsilon\} \textless r \\
+	\Rightarrow &|f(y_1) - f(y_2)| \textless r \ \forall y_i \ : \lVert y_i -x \lVert \textless \varepsilon   \ \forall \varepsilon \textless 0\\
+	\Rightarrow & \forall r \textgreater 0 \ \exists B_{\varepsilon}(x) \Rightarrow \{x \in \mathbb{R}^d: \omega_f(x) \textless r\} \text{ ist offen}
+\end{align*}
+\subsection{Zeige, dass $S$ eine Borelmenge ist}
+Mit der Prinzip der guten Menge:
+\begin{align*}
+\text{Sei }	\mathscr{A} = \{ S \subset \mathscr{B}(S): \lambda^d(S) = \inf \sum_{n=1}^{\infty} \lambda^d(I_j) \text{ wobei } \bigcup_{i=1}^{\infty}I_j \supset S\}\\
+\end{align*}
+Nun ist zu zeigen, dass $\mathscr{A}$ eine $\sigma$-Algebra ist:\\\\
+\begin{align*}
+&\emptyset \subset \mathscr{A} : \lambda^d(\emptyset) = \inf \sum_{n=1}^{\infty} \lambda^d(I_j) \text{ wobei } \bigcup_{i=1}^{\infty}I_j \supset \emptyset \Rightarrow \lambda^d(\emptyset) = 0	\\
+&S\subset \mathscr{A}: \lambda^d(S) = \inf \sum_{n=1}^{\infty} \lambda^d(I_j) \text{ wobei }\bigcup_{i=1}^{\infty}I_j \supset S.\\
+&\text{Das ist klar, weil S offen ist, und jede offene Menge eine offene Überdeckung hat.}\\
+&S \subset \mathscr{A} \Rightarrow S^\complement \subset \mathscr{A}: \text{Da   } S \text{ offen ist, ist }S^\complement \text{ abgeschlossen. Und } \forall  \ S^\complement \text{ absgeschlossen gilt: } \\
+&\exists \bigcup B_\varepsilon\text{ offen } \supsetneq S^\complement \text{ mit } \lambda^d(S^\complement) =\inf \sum_{n=1}^{\infty} \lambda^d(B_\varepsilon)\\
+&(S_k)_{k \in \mathbb{N}} \subset \mathscr{A}: S_k \subset \bigcup_{j=1}^\infty I_{k,j} \text{ mit }\lambda^d(S_k) = \inf \sum_{j=1}^{\infty}\lambda^d(I_{k,j})\\
+&\Rightarrow \lambda^d(\bigcup_{k=1}^{\infty}S_k) \leq \sum_{i, j=1}^{\infty} \lambda^d(I_{j,k})\leq \sum_{k=1}^{\infty} \lambda^d(S_k) + \varepsilon \text{ für beliebig kleine }\varepsilon\\
+&\Rightarrow \lambda^d(\bigcup_{k=1}^{\infty}S_k) = \inf\sum_{j=1}^{\infty} \lambda^d(I_{j,k}) \Rightarrow \bigcup_{k=1}^{\infty}S_k \subset \mathscr{A}\\
+&\Rightarrow \mathscr{A} \text{ ist }\sigma-Algebra\text{ und }S \subset \sigma(S) \subset \mathscr{B}(S) \subset \mathscr{A}\\ 
+&\Rightarrow S \text{ ist eine Borel Menge.}\\
+\end{align*}
+\section{Aufgabe 3}
+Seien $\alpha \textgreater 0$ und $ \varepsilon \textgreater 0.$ Definiere Mengenfunktionen $h_{\alpha, \varepsilon}$ und $h_{\alpha}$ auf $\mathscr{P}(\mathbb{R}^d)$ durch:
+\begin{align*}
+	&h_{\alpha, \varepsilon}(A) = \inf\sum_{j=1}^{\infty}(diam(E_j))^{\alpha}\\
+\end{align*}
+wobei sich das Infimum  über alle abzählbaren Überdeckungen $A \subset \bigcup_jE_j$ durch Mengen vom Durchmesser diam($E_j$) $\leq \varepsilon$ erstreckt wird, bzw.
+\begin{align*}
+	&h_{\alpha}(A) = \sup_{\varepsilon}h_{\alpha, \varepsilon}(A)\\
+\end{align*}
+Zeige, dass $h_{\alpha, \varepsilon}$ und $h_{\alpha}$ äußere Maße sind. ($h_{\alpha}$ heißt das $\alpha$-dimensionale Hausdorffmaß. Man kann zeigen, dass jede Borelmenge $h_{\alpha}$-messbar ist und dass $h_d$, eingeschränkt auf $\mathscr{B}(\mathbb{R}^d)$, ein Vielfaches des Lebesguesmaßes $\lambda^d$ ist.)\\
+\subsection{ $h_{\alpha, \varepsilon}$ und $h_{\alpha}$ sind äußere Maße }
+\begin{align*}
+	&h_{\alpha, \varepsilon}(A) = \inf\sum_{j=1}^{\infty}(diam(E_j))^{\alpha} \text{ mit } diam(E_j) \leq \varepsilon \\
+\end{align*}
+\begin{align*}
+	&\emptyset \subset \mathbb{R}^d : h_{\alpha, \varepsilon}(\emptyset)  = \inf \sum_{j=1}^{\infty} (diam(E_j))^{\alpha} \text{ wobei } \bigcup_{j=1}^{\infty}E_j \supset \emptyset \Rightarrow h_{\alpha, \varepsilon}(\emptyset) = 0	\\
+	&A \subset B ... \subset \mathbb{R}^d : \inf \sum_{j=1}^{\infty} (diam(E_jA))^{\alpha} \leq \inf \sum_{j=1}^{\infty} (diam(E_jB))^{\alpha}\\
+	& \text{ wobei } \bigcup_{j=1}^{\infty}E_jA \supset A \land \bigcup_{j=1}^{\infty}E_jB \supset B \Rightarrow \bigcup_{j=1}^{\infty}E_jB \supset A \Rightarrow h_{\alpha, \varepsilon}(A) \leq h_{\alpha, \varepsilon}(B)\\
+	&(A_k)_{k \in \mathbb{N}} \subset \mathbb{R}^d: A_k \subset \bigcup_{j=1}^\infty E_{k_j} \text{ mit } h_{\alpha, \varepsilon}(A_k) = \inf \sum_{j=1}^{\infty}(diam(E_{k_j}))^\alpha  \geq \sum_{j=1}^{\infty}(diam(E_{k_j})) - \epsilon  \\
+	&\Rightarrow h_{\alpha, \varepsilon}(\bigcup_{k=1}^{\infty}A_k) \leq \sum_{i, j=1}^{\infty} h_{\alpha, \varepsilon}(E_{jk})\leq \sum_{k=1}^{\infty} h_{\alpha, \varepsilon}(A_k) + \epsilon 
+	\text{ für beliebig kleine }\epsilon\\
+	&\Rightarrow h_{\alpha, \varepsilon}(\bigcup_{k=1}^{\infty}A_k) = \inf \sum_{j=1}^{\infty} h_{\alpha, \varepsilon}(E_{k_j}) \Rightarrow h_{\alpha, \varepsilon} \text{  ist ein äußeres Maß }\\	
+	&h_{\alpha}(A) = \sup_{\varepsilon} h_{\alpha, \varepsilon}(A)\\
+	&\Rightarrow h_{\alpha, \varepsilon}(A) + \varepsilon \leq h_{\alpha}(A)\\
+	&\Rightarrow h_{\alpha, \varepsilon}(\bigcup_{j=1}^\infty A_{k_j} ) \le \sum_{i, j=1}^{\infty} h_{\alpha, \varepsilon}(E_{j_k})\leq \sum_{k=1}^{\infty} h_{\alpha}(A_k) - \varepsilon\\
+	&\Rightarrow h_{\alpha} \text{ ist ein äußeres Maß .} 
+\end{align*}
+%\subsection{$h_d|_{\mathscr{B}(\mathbb{R}^d)}= c\cdot \lambda^d$}
+%Satz IV.3.15: $\forall A \subset \mathscr{B} (\mathbb{R}^d) $ gilt:
+% Borelmenge gilt: $h_{\alpha}(A) = h_{\alpha}(A \cup Q) + h_{\alpha}(A^\complement \cap Q) \forall Q \subset \mathbb{R^d\\A \subset \mathbb{R}^d: \lambda^d(A) = \sup\{\lambda^d(C): C \subset A, C$ kompakt$\}$
+\end{document}

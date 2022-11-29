@@ -1,0 +1,94 @@
+%\documentclass[10pt,twoside,a4paper,twocolumn,landscape]{article}
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\newcommand{\myeq}[1]{\hfill{\refstepcounter{equation}(\theequation)\label{#1}}}
+
+% change subsections to alphabetic
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\newtheorem{satz}{Satz}[section] % part
+\newtheorem{lemma}{Lemma}[section] % part
+
+\newcommand{\D}[2]{#1^\prime(#2)}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\scalar}[2]{\langle#1, #2\rangle}
+\newcommand{\starr}{\star\star}
+\newcommand{\starrr}{\star\star\star}
+\newcommand{\starrrr}{\star\star\star\star}
+\newcommand{\starrrrr}{\star\star\star\star\star}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\Bor}{Bor}
+\DeclareMathOperator{\BorRd}{Bor(\mathbb{R}^d)}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Kasra Sammak}
+\lhead{Analysis III - Übungsblatt 5}
+\rfoot{\thepage}
+
+\section*{Aufgabe IV.10.34}
+Seien $\mathbb{R}_+ := [0, \infty],$ $f_n: \mathbb{R_+} \rightarrow \mathbb{R},$ $f_n := \frac{\sin(e^x)}{1+nx^2}$\\
+\begin{align*}
+	 &\sin(e^x), 1, x^2\text{ stetig }\xRightarrow[IV.4.3]{IV.4.2(c)}f_n \text{ messbar} &\myeq{}\\
+	&\forall x \in \mathbb{R_+}: \lim_{n\to\infty} f_n = 0 =: f \text{ punktweise, da } \sin(e^x), 1, x^2 \text{ fest, und } \frac{1}{n} \xrightarrow{n \rightarrow \infty} 0 \ &\myeq{}\\
+	\Rightarrow &\forall x \in \mathbb{R_+}: |f_n| \geq |f_{n+1}| \text{ punktweise}.\\
+	&\forall x \in \mathbb{R_+}: |\sin(e^x)| \leq 1\Rightarrow |f_n| \leq \frac{1}{1+nx^2} \forall n \in \mathbb{N}\\
+	\Rightarrow &\text{ Wähle } g := \frac{1}{1+x^2} \emph{ (die oberen Schrank von $f_1$) }\\& \text{ Dann ist $g$ integrierbar und } |f_n| \leq g \ \forall n \in \mathbb{N} \ &\myeq{} \\
+	\xRightarrow[IV.6.2]{(1), (2), (3)} &\int_\mathbb{R_+}|f_n - f|dx = \int_\mathbb{R_+}|f_n - 0|dx = \int_\mathbb{R_+}|f_n|dx \xrightarrow{n \rightarrow \infty} 0 &\qed
+\end{align*}
+\section*{Aufgabe IV.10.35}
+\begin{align*}
+\hat{f}(y) = \frac{1}{\sqrt{2\pi}}\int_\mathbb{R} e^{-ixy}f(x)dx, \ f: \mathbb{R} \rightarrow \mathbb{C} \ \lambda\text{-integrierbar}	
+\end{align*}
+\subsection*{Warum ist $\hat{f}$ wohldefiniert?}
+\begin{align*}
+	\forall x,y \in \mathbb{R}: & e^{-ixy} \ \lambda\text{-integrierbar}\\ \forall x \in \mathbb{R}: &f(x) \ \lambda\text{-integrierbar}\\
+	&\text{ Seien } \ y_1, y_2 \in \mathbb{R}  \text{ beliebig, mit } y_1 = y_2\\
+	\xRightarrow{(*)}& \frac{1}{\sqrt{2\pi}}\int_\mathbb{R}e^{-ix{y_1}}f(x)dx = \frac{1}{\sqrt{2\pi}}\int_\mathbb{R}e^{-ix{y_2}}f(x)dx\\
+	\Rightarrow &\hat{f}(y_1) = \hat{f}(y_2)
+\end{align*}
+(*) Das Integral ist nur auf $y$ abhängig, da es auf ganzen $\mathbb{R}$ über $x$ integriert. So ist $\hat{f}$ auch nur auf $y$ abhängig.
+\subsection*{Ist $\hat{f}$ stetig?}
+Da $e^{-ixy} \  2\pi$-periodisch ist:
+\begin{align*}
+	&\frac{1}{\sqrt{2\pi}}\int_\mathbb{R}e^{-ixy}f(x)dx = \frac{1}{\sqrt{2\pi}}\int_\mathbb{R}e^{-2\pi ixy}f(x)dx \ \forall x,y \in \mathbb{R} \ (y \ punktweise)\\
+	\xRightarrow[\forall x,y \in \mathbb{R}]{|e^{-ixy}| \leq 1}&\left\lvert\frac{1}{\sqrt{2\pi}}\int_\mathbb{R}e^{-2\pi ix(y+h)}f(x)dx - \frac{1}{\sqrt{2\pi}}\int_\mathbb{R}e^{-2\pi ixy}f(x)dx\right\lvert  \\
+	=& \left\lvert \frac{1}{\sqrt{2\pi}}\int_\mathbb{R}(e^{-2\pi ix(y+h)}- e^{-2\pi ixy})f(x)dx\right\lvert \\
+	\leq& \frac{1}{\sqrt{2\pi}}\int_\mathbb{R}\left\lvert (e^{-2\pi ixh}-1)\right\lvert \left\lvert f(x) \right\lvert dx \xrightarrow{h \rightarrow 0} 0&\myeq{}\\
+	&\text{Man kann } h := \frac{2\pi}{n}\text{ wählen, und die Folge messbarer (da integrierbar) } \\
+	&\hat{f_n}: = \frac{1}{\sqrt{2\pi}} e^{-ixh}f(x) \text{ konstruieren, sodass }\\ 
+	& \forall n \in \mathbb{N}: \lim_{n\to\infty} = \frac{1}{\sqrt{2\pi}}\int_\mathbb{R} e^{-ixh}f(x)dx = \hat{f} \text{ existiert.}&\myeq{}\\ 
+	\xRightarrow[IV.6.2]{(4),(5)}&\left\lvert \frac{1}{\sqrt{2\pi}}\int_\mathbb{R}(e^{-2\pi ix(y+h)}- e^{-2\pi ixy})f(x)dx\right\lvert \xrightarrow{h \rightarrow 0} 0\\
+	\Rightarrow &\hat{f} \text{ stetig, sogar gleichmäßig.} &\qed
+\end{align*}
+\section*{Aufgabe IV.10.36}
+\subsection*{Sei $f: \mathbb{R} \rightarrow \mathbb{R}$ durch $f(s) = \frac{1}{\sqrt s}$ für $0 \textless s \leq 1$ und $f(s) = 0$ sonst definiert. Zeige, dass $f$ messbar ist, und berechne $\int_\mathbb{R} f d\lambda$.}
+Seien $A: = (0,1]$ und $B:= (-\infty,0] \cap (1,\infty)$
+\begin{align*}
+	&f_A: (0,1] \rightarrow \mathbb{R} \text{ stetig } \xRightarrow{IV.4.2(c)} f_A\  \mathscr{B}orel-messbar \text{ auf } A\\
+	&f_B: (-\infty,0] \cap (1,\infty) \rightarrow \mathbb{R} \text{ stetig } \xRightarrow{IV.4.2(c)}  f_B \ \mathscr{B}orel-messbar \text{ auf }  B\\
+	\Rightarrow & f:\mathbb{R} \rightarrow \mathbb{R} \ \mathscr{B}orel-messbar 
+\end{align*}
+\begin{align*}
+	\int_\mathbb{R} f(s) d\lambda(s)&=\int_A f(s) d\lambda(s) + \int_B f(s) d\lambda(s)\\
+	&= \int_A \frac{1}{\sqrt s}\ d\lambda(s)+ \int_B 0\ d\lambda(s)\\
+	&= 2\sqrt{s} \mid_{0}^{1} + \ 0\\
+	&=2 - 0 \\
+	&=2
+\end{align*}
+\end{document}
