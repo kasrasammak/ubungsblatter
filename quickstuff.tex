@@ -1,0 +1,49 @@
+%\documentclass[10pt,twoside,a4paper,twocolumn,landscape]{article}
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage[english]{babel}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+% change subsections to alphabetic
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\newtheorem{satz}{Satz}[section] % part
+\newtheorem{lemma}{Lemma}[section] % part
+
+\newcommand{\D}[2]{#1^\prime(#2)}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\scalar}[2]{\langle#1, #2\rangle}
+\newcommand{\starr}{\star\star}
+\newcommand{\starrr}{\star\star\star}
+\newcommand{\starrrr}{\star\star\star\star}
+\newcommand{\starrrrr}{\star\star\star\star\star}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\Bor}{Bor}
+\DeclareMathOperator{\BorRd}{Bor(\mathbb{R}^d)}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Kasra Sammak}
+\lhead{Fuctional Analysis  - Some problems}
+\rfoot{\thepage}
+
+\section{Aufgabe IV.10.12}
+\begin{align*}
+    &A = \bigcup_{i = 0}^{\infty}[a_i, a_{i+1} -\frac{i-1}{2i}]\\
+    &a \in \mathbb{Z_+}\\
+    &B = \bigcup_{i = 0}^{\infty}[a_i+\frac{i-1}{2i}, a_{i+1} ]\\
+    &a \in \mathbb{Z_-}\\
+\end{align*}
+\end{document}
