@@ -1,0 +1,118 @@
+%\documentclass[10pt,twoside,a4paper,twocolumn,landscape]{article}
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage[english]{babel}
+
+% change subsections to alphabetic
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\newtheorem{satz}{Satz}[section] % part
+\newtheorem{lemma}{Lemma}[section] % part
+
+\newcommand{\D}[2]{#1^\prime(#2)}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\scalar}[2]{\langle#1, #2\rangle}
+\newcommand{\starr}{\star\star}
+\newcommand{\starrr}{\star\star\star}
+\newcommand{\starrrr}{\star\star\star\star}
+\newcommand{\starrrrr}{\star\star\star\star\star}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\Bor}{Bor}
+\DeclareMathOperator{\BorRd}{Bor(\mathbb{R}^d)}
+\DeclareMathOperator*{\equals}{=}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\usepackage{mathrsfs} 
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Kasra Sammak}
+\lhead{Analysis III - Übungsblatt 6}
+\rfoot{\thepage}
+
+\section*{IV.10.38}
+\subsection*{Gelte $\mu(S) < \infty$ und $1\leq r \leq p$. Dann folgt $\mathscr{L}^p(\mu) \subset \mathscr{L}^r(\mu)$ und $\lVert f \rVert_r \leq \mu(S)^{1/r - 1/p}\lVert f \rVert_p$ für $f \in \mathscr{L}^p(\mu)$. }
+\begin{align*}
+	\text{Seien } &f \in \mathscr{L}^p , \ \beta := \inf_{\substack{N \in \mathscr{A} \\ \mu(N)=0}} \sup_{s \in S\setminus N}|f(s)|\\
+	\xRightarrow{\mu(S)\textless \infty} & \beta < \infty \Rightarrow \beta^x < \infty \ \forall x \in [1,p]\\
+	\Rightarrow &\int_S \lvert f \rvert^p d\mu \leq \beta^p \mu(S) < \infty\\
+	\iff &\int_S \lvert f \rvert^r d\mu\leq \beta^r \mu(S) < \infty\\
+	\Rightarrow & f \in \mathscr{L}^r \Rightarrow \mathscr{L}^p(\mu) \subset \mathscr{L}^r(\mu)\\
+	\text{Nun ist zu zeigen: } &\lVert f \rVert_r \leq \mu(S)^{1/r - 1/p}\lVert f \rVert_p\\
+	\iff & \Bigl( \int_{S}|f|^rd\mu\Bigr)^{1/r} \leq \frac{\mu(S)^{1/r}}{\mu(S)^{1/p}}\Bigl( \int_{S}|f|^pd\mu\Bigr)^{1/p}\\
+	\iff & \Bigl( \frac{\int_{S}|f|^rd\mu}{\mu(S)}\Bigr)^{1/r} \leq \Bigl( \frac{\int_{S}|f|^pd\mu}{\mu(S)}\Bigr)^{1/p}\\
+	\iff & \Bigl( \int_{S}|f|^rd\mu\Bigr)^{1/r} \leq \Bigl( \int_{S}|f|^pd\mu\Bigr)^{1/p}\\
+\end{align*}
+
+\section*{IV.10.40}
+\subsection*{Es gilt weder $\mathscr{L}^r(\mathbb{R}) \subset \mathscr{L}^p(\mathbb{R})$ noch $\mathscr{L}^p(\mathbb{R}) \subset \mathscr{L}^r(\mathbb{R})$ für $1 \leq r < p \leq \infty$. }
+\begin{align*}
+	\text{ Seien } &f \in \mathscr{L}^r(\mathbb{R}), g \in \mathscr{L}^p(\mathbb{R})\\
+	\text{Wähle } & f := \frac{1}{x^{1/p}}, g:= \frac{1}{x^{1/r}}\\
+	\text{Dann ist } & \int_\mathbb{R}|f|^r d\lambda = \int_\mathbb{R}\left\lvert\frac{1}{x^{1/p}}\right\lvert^r d\lambda \\
+	= & \int_\mathbb{R}\left\lvert \frac{1}{x}\right\lvert^{r/p} d\lambda < \infty\bigg(\text{da } \frac{r}{p}<1\bigg)\\
+	\text{Beziehungsweise } & \int_\mathbb{R}|g|^p d\lambda = \int_\mathbb{R}\left\lvert\frac{1}{x^{1/r}}\right\lvert^p d\lambda \\
+	= & \int_\mathbb{R}\left\lvert \frac{1}{x}\right\lvert^{p/r} d\lambda < \infty\bigg(\text{da } \frac{p}{r}>1\bigg)\\
+	\text{ Aber } & \int_\mathbb{R}|f|^p d\lambda =\int_\mathbb{R}\left\lvert\frac{1}{x^{1/p}}\right\lvert^p d\lambda= \int_\mathbb{R}\left\lvert \frac{1}{x}\right\lvert^{p/p} d\lambda \\	
+	= & \int_\mathbb{R}\left\lvert \frac{1}{x}\right\lvert d\lambda \\
+	= & \int_\mathbb{R}\left\lvert \frac{1}{x}\right\lvert^{r/r} d\lambda = \int_\mathbb{R}\left\lvert\frac{1}{x^{1/r}}\right\lvert^r d\lambda  = \int_\mathbb{R}|g|^r d\lambda \\
+	= & \infty\\
+	\Rightarrow & \mathscr{L}^r(\mathbb{R}) \not\subset \mathscr{L}^p(\mathbb{R}) \land\mathscr{L}^p(\mathbb{R}) \not\subset \mathscr{L}^r(\mathbb{R})
+\end{align*}
+
+
+\section*{IV.10.41}
+\subsection*{$\mathscr{L}^{\infty}[0,1] \subsetneq \bigcup_{p < \infty}\mathscr{L}^{p}[0,1]$}
+Seien $S:= [0,1], f \in \mathscr{L}^\infty(S)\Rightarrow \exists \alpha \geq 0: \lambda(\{|f| > \alpha \})=0$
+\begin{align*}
+	\text{Wähle } & p := \frac{1}{\alpha}\\
+	\Rightarrow&\int_S |f|^p d\lambda = \int_S \left\lvert f \right\lvert^{\frac{1}{\alpha}}d\lambda < \infty	\big( \text{da }\lambda(S' \subset S), \left\lvert f \right\lvert^{\frac{1}{\alpha}} \leq 1 \big)\\
+	\Rightarrow &\exists p < \infty : f \in \mathscr{L}^p(S) \Rightarrow f \in \bigcup_{p < \infty} \mathscr{L}^p(S)\\
+	\Rightarrow &\mathscr{L}^\infty(S) \subset \bigcup_{p < \infty} \mathscr{L}^p(S)
+\end{align*}
+Betrachte $f := \frac{1}{x}$
+\begin{align*}
+&\int_S	\left\lvert f\right\lvert^2 d\lambda = \int_S	\left\lvert \frac{1}{x}\right\lvert^2 d\lambda < \infty\\
+\Rightarrow &f \in \mathscr{L}^2(S) \Rightarrow f \in \bigcup_{p<\infty} \mathscr{L}^p(S)\\
+\text{Aber } & \nexists \alpha \geq 0: \lambda(\{|f|>\alpha\}) = 0 \ \big(\lambda(\{|f|=\infty\} )=0\big)\\
+\Rightarrow& f \notin \mathscr{L}^\infty\\
+\Rightarrow& \bigcup_{p<\infty}\mathscr{L}^p(S)
+\not\subset \mathscr{L}^\infty(S)
+\end{align*}
+$\Rightarrow \mathscr{L}^{\infty}(S) \subsetneq \bigcup_{p < \infty}\mathscr{L}^{p}(S)$
+
+\subsection*{Für $f \in \mathscr{L}^{\infty}[0,1]$ gilt $\lim_{p \to\infty}\lVert f \rVert_p = \lVert f \rVert_{\mathscr{L}^{\infty}}$}
+\begin{align*}
+\text{Seien }& S := [0,1], \ f \in \mathscr{L}^{\infty}(S) \Rightarrow \exists \beta \geq 0: \lambda(\{|f| > \beta \})=0\\
+zz: &\lim_{p\to\infty}\Bigl( \int_{S}|f|^p d\lambda \Bigr)^{1/p} = \inf_{\substack{N \in \mathscr{A} \\ \lambda(N)=0}} \sup_{s \in S\setminus N}|f(s)|\\
+	&\lim_{p\to\infty}\Bigl( \int_{S}|f|^pd\lambda\Bigr)^{1/p}\\
+	\equals^{IV.4.6}&\lim_{p\to\infty}\bigl(\lim_{n\to\infty}\sum_{j=1}^{n}|\alpha_{j}|^{p}\lambda(A_j \cap S)\bigr)^{1/p}\\
+	=&\lim_{p\to\infty}\bigl(\lim_{n\to\infty}\sum_{j=1}^{n}\left\lvert\beta\right\lvert^p\left\lvert\frac{\alpha_{j}}{\beta}\right\lvert^{p}\lambda(A_j \cap S)\bigr)^{1/p}\\
+\text{Seien } \beta_n := &\inf_{\substack{N \in \mathscr{A} \\ \lambda(N)=0}} \sup_{\substack{j \in 4^n-1\\f^{-1}(\alpha_{j}^p) \in A_j\setminus N}}|\alpha_j|,\\ \beta :=& \lim_{n \to \infty} \beta_n = \inf_{\substack{N \in \mathscr{A} \\ \lambda(N)=0}} \sup_{s \in S\setminus N}|f(s)|, \\
+f_n := &\lim_{p\to\infty}\bigl({f_n}^{'}:=\sum_{j=1}^{n}\beta_n^p\left\lvert\frac{\alpha_{j}}{\beta_n}\right\lvert^{p}\lambda(A_j \cap S)\bigr)^{1/p}\\
+\xRightarrow{\left\lvert\frac{\alpha_{j}}{\beta}\right\lvert^{p} \leq 1} &f_n \leq g_{+}:=\lim_{p\to\infty}\bigl(\sum_{j=1}^{\infty}\beta^p\lambda(A_j \cap S)\bigr)^{1/p}\\
+	\equals &\lim_{p\to\infty}\bigl(\beta^p\lambda(A_1 \cap S) + \beta^p\lambda(A_2 \cap S)+ \ldots +\beta^p\lambda(A_{j_i} \cap S) + \ldots )^{1/p}\\
+	&\text{Wobei } i \in I \text{ Indexmenge, indem } (A_{j_i} \cap S) \subset N\ (Nullmenge)\\
+	=&\lim_{p\to\infty}\bigl(\beta^p\lambda(S))^{1/p} =\lim_{p\to\infty}\bigl(\beta^p)^{1/p} \lim_{p\to\infty}\bigl(\lambda(S))^{1/p} \\
+	=&\beta\\
+	\Rightarrow &{g_+} \ \lambda -integrierbar\\
+	\text{Sei } & f=\lim_{n \to\infty} f_n = \lim_{n \to \infty}\Big(\lim_{p \to\infty} \bigl(\sum_{j=1}^{n}\beta_n^p\left\lvert\frac{\alpha_{j}}{\beta_n}\right\lvert^{p}\lambda(A_j \cap S)\bigr)^{1/p}\Big)\\
+	\equals_{\substack{I_1 \  Indexmenge \\ wobei \ \alpha_j = \beta_n}}^{\substack{I_0 \  Indexmenge \\ wobei \ \alpha_j < \beta_n}}& \lim_{n \to \infty}\Bigg(\Big(\lim_{p \to\infty} \bigl(\sum_{j \in I_0}\beta_n^p\left\lvert\frac{\alpha_{j}}{\beta_n}\right\lvert^{p}\lambda(A_j \cap S)\bigr)^{1/p}\Big)+ \Big(\lim_{p \to\infty} \bigl(\sum_{j \in I_1}\beta_n^p\left\lvert\frac{\alpha_{j}}{\beta_n}\right\lvert^{p}\lambda(A_j \cap S)\bigr)^{1/p}\Big)\Bigg)\\
+	\equals_{\left\lvert\frac{\alpha_{j}}{\beta_n}\right\lvert^{p} \xrightarrow[j \in I_1]{p\to\infty}1}^{\left\lvert\frac{\alpha_{j}}{\beta_n}\right\lvert^{p} \xrightarrow[j \in I_0]{p\to\infty}0}& \lim_{n \to \infty}\Bigg(\lim_{p \to\infty} \Big(\left\lvert I_1\right\lvert^{1/p}(\beta_n^p)^{1/p}(1)^{1/p}\lambda(S)^{1/p}\Big)+ \Big(\lim_{p \to\infty} \bigl(\sum_{j \in I_1}0\bigr)^{1/p}\Big)\Bigg)\\
+	\equals^{p\to\infty} & \lim_{n\to\infty} \beta_n \xrightarrow{n\to\infty} \beta\\
+	\Rightarrow & \exists f(s) = \lim_{n\to\infty}f_n(s) \big( \text{per Konstruktion } \forall s \in S\big)\\
+	\xRightarrow{f.\emph{ü}. Dom. Konv.} & \lim_{n\to\infty}\int_Sf_n d\lambda = \int_Sf d\lambda\iff \lim_{n\to\infty}\Big(\int_S\left\lvert {f_n}^{'} \right\lvert^{p}d\lambda\Big)^{1/p} = \Big(\int_S\left\lvert f\right\lvert^{p}d\lambda\Big)^{1/p} \forall p \in [1,\infty]\\
+	\xRightarrow[in \ n,\ p]{Mon. Konv.} &\text{Limites vertauschbar}\\
+	\Rightarrow &\lim_{p\to\infty}\Bigl( \int_{S}|f|^p d\lambda \Bigr)^{1/p} \lim_{n\to\infty}\lim_{p\to\infty}{f_n}^{'}= \lim_{n\to\infty}f_n = \beta \qed\\
+	\end{align*}
+\end{document}
